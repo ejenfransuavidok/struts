@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC 
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" 
+"http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+	<form-beans>
+		<form-bean name="myForm" type="org.apache.struts.action.DynaActionForm">
+			<form-property name="receivedMessage" type="java.lang.String" initial="Hello World!"/>
+			<form-property name="json" type="java.lang.String"/>
+		</form-bean>
+	</form-beans>
+
+	<action-mappings>
+	
+		<action
+			path="/DownloadPage"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/pages/display.jsp"/>
+		
+		<action
+			path="/DownloadIt"
+			type="com.mkyong.common.action.DownloadFileAction"
+			>
+		</action>
+
+		<action path="/callAction" type="com.mkyong.common.action.JsonAction" name="myForm">
+			<forward name="success" path="/pages/output.jsp"/>
+		</action>
+
+	</action-mappings>
+
+</struts-config>
